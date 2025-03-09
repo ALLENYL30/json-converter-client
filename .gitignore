@@ -1,0 +1,49 @@
+# Node.js
+/node_modules
+/.pnp
+.pnp.js
+dist/
+build/
+
+# React Native
+ios/build/
+
+# Next.js (如果使用 Next.js)
+.next/
+.out/
+
+# 环境文件（可选，根据需要调整）
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE 和编辑器
+/.idea
+/.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+
+# 其他临时文件
+/*.log
+/*.csv
+/*.map
+/*.log
+npm-debug.log*
+yarn-error.log
+
+# 测试覆盖率
+/coverage
+
+# 系统文件
+Thumbs.db
+
+# 配置文件
+.env
+
+# 日志文件
+*.log
