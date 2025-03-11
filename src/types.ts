@@ -1,6 +1,7 @@
 export interface JsonConversionRequest {
-  jsonContent: string;
-  targetLanguage: string;
+  content: string;
+  sourceFormat: string;
+  targetFormat: string;
   rootClassName: string;
   generateProperties: boolean;
   generateJsonAttributes: boolean;

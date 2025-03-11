@@ -28,12 +28,27 @@ const App: React.FC = () => {
     }
   };
 
+  const getFormatDisplayName = (format: string): string => {
+    switch (format.toLowerCase()) {
+      case "csharp":
+        return "C#";
+      case "json":
+        return "JSON";
+      case "xml":
+        return "XML";
+      case "yaml":
+        return "YAML";
+      default:
+        return format;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">
-            JSON Converter Tool
+            Format Converter Tool
           </h1>
         </div>
       </header>
@@ -45,7 +60,7 @@ const App: React.FC = () => {
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                   <div>
                     <h2 className="text-lg font-medium text-gray-900 mb-4">
-                      Convert JSON to Code
+                      Convert Between Formats
                     </h2>
                     <JsonConverterForm
                       onSubmit={handleSubmit}
@@ -54,7 +69,9 @@ const App: React.FC = () => {
                   </div>
                   <div>
                     <h2 className="text-lg font-medium text-gray-900 mb-4">
-                      Generated Code
+                      {response && response.success
+                        ? `Generated ${getFormatDisplayName(response.language)}`
+                        : "Output"}
                     </h2>
                     {error && (
                       <div className="rounded-md bg-red-50 p-4 mb-4">
@@ -81,8 +98,9 @@ const App: React.FC = () => {
                         <div className="flex">
                           <div className="ml-3">
                             <p className="text-sm text-blue-700">
-                              Enter your JSON and click "Convert JSON" to
-                              generate code.
+                              Enter your content and select the source and
+                              target formats, then click "Convert" to generate
+                              the output.
                             </p>
                           </div>
                         </div>
@@ -98,7 +116,8 @@ const App: React.FC = () => {
       <footer className="bg-white">
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm text-gray-500">
-            JSON Converter Tool - Convert JSON to C# and Java classes
+            Format Converter Tool - Convert between JSON, XML, YAML, C#, and
+            Java
           </p>
         </div>
       </footer>

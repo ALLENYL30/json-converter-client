@@ -20,7 +20,7 @@ export const convertJson = async (
     return {
       success: false,
       errorMessage: "An error occurred while connecting to the server",
-      language: request.targetLanguage,
+      language: request.targetFormat,
     };
   }
 };

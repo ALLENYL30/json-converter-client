@@ -15,14 +15,30 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ code, language }) => {
         return "csharp";
       case "java":
         return "java";
+      case "json":
+        return "json";
+      case "xml":
+        return "xml";
+      case "yaml":
+      case "yml":
+        return "yaml";
       default:
         return "javascript";
     }
   };
 
+  // Format YAML content to ensure proper indentation and line breaks
+  const formatContent = (content: string, lang: string): string => {
+    if (lang.toLowerCase() === "yaml" || lang.toLowerCase() === "yml") {
+      // Ensure YAML content has proper line breaks
+      return content.replace(/\\n/g, "\n");
+    }
+    return content;
+  };
+
   const handleCopyCode = () => {
     navigator.clipboard.writeText(code);
-    alert("Code copied to clipboard!");
+    alert("Content copied to clipboard!");
   };
 
   return (
@@ -32,7 +48,7 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ code, language }) => {
           onClick={handleCopyCode}
           className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Copy Code
+          Copy
         </button>
       </div>
       <SyntaxHighlighter
@@ -46,9 +62,10 @@ const CodeDisplay: React.FC<CodeDisplayProps> = ({ code, language }) => {
           lineHeight: "1.25rem",
           maxHeight: "500px",
           overflowY: "auto",
+          whiteSpace: "pre-wrap",
         }}
       >
-        {code}
+        {formatContent(code, language)}
       </SyntaxHighlighter>
     </div>
   );
